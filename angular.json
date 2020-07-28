@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hydra-cms"
+    }
+  },
+  "defaultProject": "hydra-cms",
+  "cli": {
+    "analytics": "ddd58ec3-d06e-4a66-ab0a-9ec9891023f2"
+  }
 }

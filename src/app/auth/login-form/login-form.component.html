@@ -1,0 +1,26 @@
+<section fxLayoutAlign='center center'>
+    <mat-card>
+        <mat-card-header fxLayoutAlign='center center'>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form fxLayout="column" [formGroup]='loginForm' (ngSubmit)='onSubmit()'>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" formControlName='username'>
+                    <mat-error>Username is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Password" formControlName='password'>
+                    <mat-error>Password is required</mat-error>
+                </mat-form-field>
+                <div fxLayoutAlign='center'><button  type="submit" mat-raised-button color="primary" class="login-btn" [disabled]="!loginForm.valid">Login</button></div>
+                
+            </form>
+            <div class="register-container">Or <a href="" mat-button color="warn" class="register-link">create an account</a></div>
+    
+        </mat-card-content>
+    </mat-card>
+</section>
+
