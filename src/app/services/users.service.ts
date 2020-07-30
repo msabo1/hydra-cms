@@ -6,6 +6,8 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { MessagesService } from './messages.service'
 import { Role } from '../models/role.model';
 import { CreateUserDto } from '../models/create-user.dto';
+import { UpdateUserDto } from '../models/update-user.dto';
+
 @Injectable()
 export class UsersService {
 
@@ -39,6 +41,14 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto): Observable<User>{
     return this.http.post<User>(this.url, createUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
+  }
+
+  update(id: string, updateUserDto: UpdateUserDto): Observable<User>{
+    return this.http.post<User>(`${this.url}/${id}`, updateUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
+  }
+
+  delete(id: string){
+    return this.http.delete<User>(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleError(error)));
   }
 
   private mapResponseToUserModel(user: User): User{
