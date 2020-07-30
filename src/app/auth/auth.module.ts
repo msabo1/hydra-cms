@@ -10,7 +10,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../services/users.service';
-import { AuthInterceptor } from './auth.interceptor'
 
 @NgModule({
   declarations: [AuthComponent, LoginFormComponent],

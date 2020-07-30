@@ -1,0 +1,51 @@
+<section fxLayout="row" fxLayoutAlign="space-between">
+  <section fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select [formControl]="status" matNativeControl name="status" value="all" (selectionChange)="statusSubject.next(status.value)">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="active">Active</mat-option>
+        <mat-option value="banned">Banned</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select matNativeControl name="status" value="all">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="active">Active</mat-option>
+        <mat-option value="banned">Banned</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+  
+  <mat-form-field  fxLayoutAlign="center center" appearance="legacy">
+    <mat-label>Search</mat-label>
+    <input [formControl]="search" type="text" matInput placeholder="Search" (input)="searchTermSubject.next(search.value)">
+  </mat-form-field>
+</section>
+
+<table matSort mat-table [dataSource]="users">
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+    <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+    <td mat-cell *matCellDef="let user"> {{user.status}} </td>
+  </ng-container>
+  <ng-container matColumnDef="role">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+    <td mat-cell *matCellDef="let user"> {{user.role.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
+    <td mat-cell *matCellDef="let user"> {{user.createdAt | date:'medium'}} </td>
+  </ng-container>
+  <ng-container matColumnDef="updatedAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated </th>
+    <td mat-cell *matCellDef="let user"> {{user.updatedAt | date:'medium'}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="total"></mat-paginator>

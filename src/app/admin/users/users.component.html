@@ -1,1 +1,1 @@
-<p>users works!</p>
+<app-list-users *ngIf="loggedUser && loggedUser.role.hasPrivilege('read', 'users')" [loggedUser]="loggedUser"></app-list-users>

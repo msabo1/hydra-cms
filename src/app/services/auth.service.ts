@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, Subscription, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Token } from '../models/token.model';
 import { User } from '../models/user.model';
 import { ErrorsService } from './errors.service'
 import { Payload } from '../models/payload.model';
+import { UsersService } from './users.service';
 @Injectable()
 export class AuthService {
-  loggedUser: Subject<User> = new Subject();
+  loggedUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   token: Token;
   payload: Payload;
   constructor(
+    private readonly usersService: UsersService,
     private readonly http: HttpClient,
     private readonly errorsService: ErrorsService
   ){
@@ -26,7 +28,6 @@ export class AuthService {
     this.token = token;
     localStorage.token = token.token;
     this.payload = token.parse();
-    this.loadLoggedUser();
   }
 
   login(username: string, password: string): Observable<Token>{
@@ -46,14 +47,9 @@ export class AuthService {
     delete localStorage.token;
     this.token = null;
     this.payload = null;
-    this.loggedUser.next(null);
   }
 
-  loadLoggedUser(){
-    const params: HttpParams =  new HttpParams({fromObject: {cascade: 'true'}});
-    this.http.get<User>(`/api/users/${this.payload.userId}`,{params})
-      .pipe(
-        catchError(error => this.errorsService.handleError(error))
-      ).subscribe(user => this.loggedUser.next(user));
+  getLoggedUser(): Observable<User>{
+    return this.usersService.getById(this.payload.userId, {cascade: 'true'});
   }
 }

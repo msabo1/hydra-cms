@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module'
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AdminModule } from './admin/admin.module'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    AdminModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
