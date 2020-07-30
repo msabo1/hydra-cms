@@ -3,8 +3,9 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User, Users } from '../models/user.model';
 import { catchError, tap, map } from 'rxjs/operators';
-import { ErrorsService } from './errors.service'
+import { MessagesService } from './messages.service'
 import { Role } from '../models/role.model';
+import { CreateUserDto } from '../models/create-user.dto';
 @Injectable()
 export class UsersService {
 
@@ -12,7 +13,7 @@ export class UsersService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly errorsService: ErrorsService
+    private readonly messagesService: MessagesService
     ) { }
 
   get(query: {sortBy?: string, roleId?: string, status?: string, limit?: string, offset?: string, cascade?: 'true' | 'false'}): Observable<Users>{
@@ -23,7 +24,7 @@ export class UsersService {
           response.body.forEach(this.mapResponseToUserModel);
           return {users: response.body, total: Number(response.headers.get('Pagination-Count'))};
         }),
-        catchError(error => this.errorsService.handleError(error))
+        catchError(error => this.messagesService.handleError(error))
       );
   }
 
@@ -32,8 +33,12 @@ export class UsersService {
     return this.http.get<User>(`${this.url}/${id}`,{params})
       .pipe(
         map(this.mapResponseToUserModel),
-        catchError(error => this.errorsService.handleError(error))
+        catchError(error => this.messagesService.handleError(error))
       );
+  }
+
+  create(createUserDto: CreateUserDto): Observable<User>{
+    return this.http.post<User>(this.url, createUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
   }
 
   private mapResponseToUserModel(user: User): User{

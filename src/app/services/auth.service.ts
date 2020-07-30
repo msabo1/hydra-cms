@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Token } from '../models/token.model';
 import { User } from '../models/user.model';
-import { ErrorsService } from './errors.service'
+import { MessagesService } from './messages.service'
 import { Payload } from '../models/payload.model';
 import { UsersService } from './users.service';
 @Injectable()
@@ -15,7 +15,7 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly http: HttpClient,
-    private readonly errorsService: ErrorsService
+    private readonly messagesService: MessagesService
   ){
     this.token = new Token();
     this.token.token = localStorage.token;
@@ -39,7 +39,7 @@ export class AuthService {
           return tkn;
         }),
         tap((token: Token) => this.handleSuccessfulLogin(token)),
-        catchError(error => this.errorsService.handleError(error))
+        catchError(error => this.messagesService.handleError(error))
       );
   }
 

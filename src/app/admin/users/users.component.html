@@ -1,1 +1,10 @@
-<app-list-users *ngIf="loggedUser && loggedUser.role.hasPrivilege('read', 'users')" [loggedUser]="loggedUser"></app-list-users>
+<section fxLayout="column" fxLayoutGap="10px">
+  <section fxLayout="row" fxLayoutGap="10px">
+    <h1>Users</h1>
+    <section *ngIf="loggedUser && loggedUser.role.hasPrivilege('create', 'users')">
+      <button mat-stroked-button color="primary" (click)="openCreateDialog()">Create new</button>
+    </section>
+  </section>
+  <app-list-users *ngIf="loggedUser && loggedUser.role.hasPrivilege('read', 'users')" [loggedUser]="loggedUser" [reloadSubject]="reloadSubject"></app-list-users>
+</section>
+

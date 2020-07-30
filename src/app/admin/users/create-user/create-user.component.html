@@ -1,0 +1,25 @@
+<h2>Create new user</h2>
+<form fxLayout="column" [formGroup]='createUserForm' (ngSubmit)='onSubmit()'>
+  <mat-form-field appearance="legacy">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Username" formControlName='username'>
+    <mat-error>Username is required</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput placeholder="Password" formControlName='password'>
+    <mat-error>Password is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status" matNativeControl name="status">
+      <mat-option value="active">Active</mat-option>
+      <mat-option value="banned">Banned</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <div fxLayoutAlign='end' fxLayoutGap="5px">
+    <button mat-button color="accent" mat-dialog-close (click)="onClose()">Close</button>
+    <button type="submit" mat-stroked-button color="primary" [disabled]="!createUserForm.valid">Create</button>
+  </div>
+</form>

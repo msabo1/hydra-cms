@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorComponent } from './error/error.component';
+import { MessageComponent } from './message/message.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [ErrorComponent],
+  declarations: [MessageComponent],
   imports: [
     CommonModule,
     MatSnackBarModule
   ],
-  exports: [ErrorComponent]
+  exports: [MessageComponent]
 })
 export class SharedModule { }

@@ -12,9 +12,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminRoutingModule } from './admin-routing.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CreateUserComponent } from './users/create-user/create-user.component';
 
 @NgModule({
-  declarations: [UsersComponent, ListUsersComponent, AdminComponent],
+  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -25,7 +33,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminRoutingModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDialogModule
   ],
   exports: [AdminComponent]
 })

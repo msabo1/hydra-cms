@@ -4,14 +4,14 @@ import { Observable, Subject, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorsService {
-  error: Subject<any> = new Subject<any>();
+export class MessagesService {
+  message: Subject<any> = new Subject<any>();
   
   constructor() { }
 
   handleError(error): Observable<any>{
     console.log(error);
-    this.error.next(error.error);
+    this.message.next(error.error.message);
     return of();
   }
 }

@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ErrorsService } from '../../services/errors.service';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
-  selector: 'app-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css']
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css']
 })
-export class ErrorComponent implements OnInit {
+export class MessageComponent implements OnInit {
 
   constructor(
-    private readonly errorsService: ErrorsService,
+    private readonly messages: MessagesService,
     private readonly snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
-    this.errorsService.error.subscribe((error) => this.openSnackBar(error.message));
+    this.messages.message.subscribe((message) => this.openSnackBar(message));
   }
 
   openSnackBar(message: string){
