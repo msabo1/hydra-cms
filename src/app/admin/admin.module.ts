@@ -20,9 +20,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CreateUserComponent } from './users/create-user/create-user.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { UpdateUserComponent } from './users/update-user/update-user.component';
+import { DeleteUserComponent } from './users/delete-user/delete-user.component';
+import { AuthModule } from '../auth/auth.module';
+import { RolesComponent } from './roles/roles.component';
+import { ListRolesComponent } from './roles/list-roles/list-roles.component';
 
 @NgModule({
-  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent],
+  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent, UpdateUserComponent, DeleteUserComponent, RolesComponent, ListRolesComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -39,7 +45,9 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
+    AuthModule
   ],
   exports: [AdminComponent]
 })

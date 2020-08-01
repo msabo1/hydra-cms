@@ -44,11 +44,11 @@ export class UsersService {
   }
 
   update(id: string, updateUserDto: UpdateUserDto): Observable<User>{
-    return this.http.post<User>(`${this.url}/${id}`, updateUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
+    return this.http.patch<User>(`${this.url}/${id}`, updateUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
   }
 
   delete(id: string){
-    return this.http.delete<User>(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleError(error)));
+    return this.http.delete(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleError(error)));
   }
 
   private mapResponseToUserModel(user: User): User{

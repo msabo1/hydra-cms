@@ -7,6 +7,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, SortDirection } from '@angular/material/sort';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { UpdateUserComponent } from '../update-user/update-user.component';
+import { DeleteUserComponent } from '../delete-user/delete-user.component';
 
 @Component({
   selector: 'app-list-users',
@@ -29,14 +32,14 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   pageSize: number = 10;
   pageIndex: number = 0;
 
-  tableColumns: string[] = ['username', 'status', 'role', 'createdAt', 'updatedAt'];
+  tableColumns: string[] = ['username', 'status', 'role', 'createdAt', 'updatedAt', 'actions'];
 
   searchTermSubject: Subject<string> = new Subject<string>();
   statusSubject: Subject<string> = new Subject<string>();
   status: FormControl = new FormControl();
   search: FormControl = new FormControl();
 
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService, private readonly dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.status.setValue('all');
@@ -72,6 +75,24 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
     this.usersService.get(_query).subscribe((users: Users) => {
       this.users = users.users;
       this.total = users.total;
+    });
+  }
+
+  openEditDialog(user: User){
+    const dialogRef: MatDialogRef<UpdateUserComponent> = this.dialog.open(UpdateUserComponent, {data: user});
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.reloadSubject.next(result);
+      }
+    });
+  }
+
+  openDeleteDialog(id: string){
+    const dialogRef: MatDialogRef<DeleteUserComponent> = this.dialog.open(DeleteUserComponent, {data: id});
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.reloadSubject.next(result);
+      }
     });
   }
 }

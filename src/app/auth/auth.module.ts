@@ -10,9 +10,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '../services/users.service';
+import { PrivilegeAuthDirective } from './privilege-auth.directive';
 
 @NgModule({
-  declarations: [AuthComponent, LoginFormComponent],
+  declarations: [AuthComponent, LoginFormComponent, PrivilegeAuthDirective],
   imports: [
     CommonModule,
     MatCardModule,
@@ -23,6 +24,6 @@ import { UsersService } from '../services/users.service';
     ReactiveFormsModule
   ],
   providers: [AuthService, UsersService],
-  exports: [AuthComponent]
+  exports: [AuthComponent, PrivilegeAuthDirective]
 })
 export class AuthModule { }

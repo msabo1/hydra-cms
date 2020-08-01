@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service'
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { Subject } from 'rxjs';
 
@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
   }
 
   openCreateDialog(){
-    const dialogRef = this.dialog.open(CreateUserComponent);
+    const dialogRef: MatDialogRef<CreateUserComponent> = this.dialog.open(CreateUserComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.reloadSubject.next(true);
