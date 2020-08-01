@@ -3,22 +3,22 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User, Users } from '../models/user.model';
 import { catchError, tap, map } from 'rxjs/operators';
-import { MessagesService } from './messages.service'
-import { Role } from '../models/role.model';
-import { CreateUserDto } from '../models/create-user.dto';
+import { MessagesService } from '../../services/messages.service'
+import { Role } from '../../models/role.model';
+import { CreateUserDto } from '../users/dto/create-user.dto';
 import { UpdateUserDto } from '../models/update-user.dto';
 
 @Injectable()
-export class UsersService {
+export class RolesService {
 
-  url: string = '/api/users'
+  url: string = '/api/roles'
 
   constructor(
     private readonly http: HttpClient,
     private readonly messagesService: MessagesService
     ) { }
 
-  get(query: {sortBy?: string, roleId?: string, status?: string, limit?: string, offset?: string, cascade?: 'true' | 'false'}): Observable<Users>{
+  get(query: QueryRoleDto): Observable<Users>{
     const params: HttpParams = new HttpParams({fromObject: query});
     return this.http.get<User[]>(this.url, {params, observe: 'response'})
       .pipe(

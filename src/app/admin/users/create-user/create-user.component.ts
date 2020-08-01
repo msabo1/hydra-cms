@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UsersService } from '../../../services/users.service';
-import { CreateUserDto } from '../../../models/create-user.dto'
+import { UsersService } from '../../../core/users/users.service';
+import { CreateUserDto } from '../../../core/users/dto/create-user.dto'
 import { MatDialogRef } from '@angular/material/dialog';
-import { User } from '../../../models/user.model';
-import { MessagesService } from '../../../services/messages.service';
+import { User } from '../../../core/users/user.model';
+import { MessagesService } from '../../../shared/messages/messages.service';
 
 @Component({
   selector: 'app-create-user',

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Token } from '../models/token.model';
-import { User } from '../models/user.model';
-import { MessagesService } from './messages.service'
-import { Payload } from '../models/payload.model';
-import { UsersService } from './users.service';
-import { Role } from '../models/role.model';
+import { Token } from '../../models/token.model';
+import { User } from '../../core/users/user.model';
+import { MessagesService } from '../messages/messages.service'
+import { Payload } from '../../models/payload.model';
+import { UsersService } from '../../core/users/users.service';
+import { Role } from '../../core//roles/models/role.model';
 @Injectable()
 export class AuthService {
   loggedUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);

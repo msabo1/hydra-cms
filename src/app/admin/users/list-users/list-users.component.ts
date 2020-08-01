@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from '../../../core/users/users.service';
 import { Observable, Subject, merge, BehaviorSubject } from 'rxjs';
-import { User, Users } from '../../../models/user.model';
-import { QueryUsersDto, GetUsersParam} from '../../../models/query-users.dto';
+import { User, Users } from '../../../core/users/user.model';
+import { QueryUsersDto, GetUsersParam} from '../../../core/users/dto/query-users.dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, SortDirection } from '@angular/material/sort';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';

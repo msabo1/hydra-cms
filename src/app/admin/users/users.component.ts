@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service'
-import { User } from '../../models/user.model';
-import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../auth/auth.service'
+import { User } from '../../core//users/user.model';
+import { UsersService } from '../../core/users/users.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { Subject } from 'rxjs';

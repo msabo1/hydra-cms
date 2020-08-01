@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MessagesService } from '../../services/messages.service';
+import { MessagesService } from './messages.service';
 import { GeneralMessageComponent } from './general-message/general-message.component';
 import { ComponentType } from '@angular/cdk/portal';
 import { ErrorMessageComponent } from './error-message/error-message.component';

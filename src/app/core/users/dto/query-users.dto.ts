@@ -3,7 +3,7 @@ export class QueryUsersDto{
     offset?: string;
     sortBy?: string;
     order?: string;
-    cascade: 'true' | 'false';
+    cascade?: string;
     search?:string;
     roleId?: string;
     status?: string;

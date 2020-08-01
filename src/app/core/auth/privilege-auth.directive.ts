@@ -1,6 +1,6 @@
 import { Directive, TemplateRef, ViewContainerRef, Input, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { User } from '../models/user.model';
+import { AuthService } from './auth.service';
+import { User } from '../../core/users/user.model';
 
 @Directive({
   selector: '[appPrivilege]'
