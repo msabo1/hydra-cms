@@ -9,7 +9,7 @@ import { PrivilegeAuthDirective } from './privilege-auth.directive';
     CommonModule,
 
   ],
-  providers: [AuthService],
-  exports: [AuthService, PrivilegeAuthDirective]
+  providers: [],
+  exports: [PrivilegeAuthDirective]
 })
 export class AuthModule { }

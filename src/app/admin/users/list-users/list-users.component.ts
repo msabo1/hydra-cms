@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { UsersService } from '../../../core/users/users.service';
 import { Observable, Subject, merge, BehaviorSubject } from 'rxjs';
-import { User, Users } from '../../../core/users/user.model';
+import { User} from '../../../core/users/user.model';
 import { QueryUsersDto, GetUsersParam} from '../../../core/users/dto/query-users.dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, SortDirection } from '@angular/material/sort';
@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
+import { QueryResponse } from '../../../core/models/query-response.mode';
 
 @Component({
   selector: 'app-list-users',
@@ -72,9 +73,9 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   getUsers(query: GetUsersParam){
     const _query: QueryUsersDto = new QueryUsersDto(query);
     _query.cascade = 'true';
-    this.usersService.get(_query).subscribe((users: Users) => {
-      this.users = users.users;
-      this.total = users.total;
+    this.usersService.get(_query).subscribe((usersResponse: QueryResponse<User>) => {
+      this.users = usersResponse.data;
+      this.total = usersResponse.total;
     });
   }
 

@@ -8,7 +8,10 @@ import { MessagesService } from '../messages/messages.service'
 import { Payload } from '../../models/payload.model';
 import { UsersService } from '../../core/users/users.service';
 import { Role } from '../../core//roles/models/role.model';
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   loggedUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   token: Token;

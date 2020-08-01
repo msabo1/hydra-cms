@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS,  } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { AdminModule } from './admin/admin.module';
+import { MessagesModule } from './core/messages/messages.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AdminModule } from './admin/admin.module';
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    AdminModule
+    AdminModule,
+    MessagesModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

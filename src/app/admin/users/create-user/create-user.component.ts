@@ -4,7 +4,7 @@ import { UsersService } from '../../../core/users/users.service';
 import { CreateUserDto } from '../../../core/users/dto/create-user.dto'
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../../core/users/user.model';
-import { MessagesService } from '../../../shared/messages/messages.service';
+import { MessagesService } from '../../../core/messages/messages.service';
 
 @Component({
   selector: 'app-create-user',

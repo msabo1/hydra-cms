@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { UsersService } from '../../../core/users/users.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MessagesService } from '../../../shared/messages/messages.service';
+import { MessagesService } from '../../../core/messages/messages.service';
 
 @Component({
   selector: 'app-delete-user',

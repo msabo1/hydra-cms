@@ -4,8 +4,8 @@ import { GeneralMessageComponent } from './general-message/general-message.compo
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { MessageComponent } from './message.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MessagesService } from './messages.service';
+import { MaterialModule } from './material.module';
 
 
 
@@ -13,12 +13,11 @@ import { MessagesService } from './messages.service';
   declarations: [MessageComponent, GeneralMessageComponent, ErrorMessageComponent, SuccessMessageComponent],
   imports: [
     CommonModule,
-    MatSnackBarModule
+    MaterialModule
   ],
-  providers: [MessagesService],
+  providers: [],
   exports: [
-    MessageComponent,
-    MessagesService
+    MessageComponent
   ]
 })
 export class MessagesModule { }

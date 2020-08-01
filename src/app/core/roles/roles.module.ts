@@ -10,6 +10,6 @@ import { RolesService } from './roles.service'
     CommonModule
   ],
   providers: [RolesService],
-  exports: [RolesService]
+  exports: []
 })
 export class RolesModule { }

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, Users } from './user.model';
+import { User } from './user.model';
 import { catchError, tap, map } from 'rxjs/operators';
-import { MessagesService } from '../../shared/messages/messages.service'
+import { MessagesService } from '../messages/messages.service'
 import { Role } from '../roles/models/role.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { QueryUsersDto } from './dto/query-users.dto';
+import { QueryResponse } from '../models/query-response.mode'
 
 @Injectable()
 export class UsersService {
@@ -19,13 +20,13 @@ export class UsersService {
     private readonly messagesService: MessagesService
     ) { }
 
-  get(query: QueryUsersDto): Observable<Users>{
+  get(query: QueryUsersDto): Observable<QueryResponse<User>>{
     const params: HttpParams = new HttpParams({fromObject: query as {[param: string]: string}});
     return this.http.get<User[]>(this.url, {params, observe: 'response'})
       .pipe(
-        map((response: HttpResponse<User[]>): Users => {
+        map((response: HttpResponse<User[]>): QueryResponse<User> => {
           response.body.forEach(this.mapResponseToUserModel);
-          return {users: response.body, total: Number(response.headers.get('Pagination-Count'))};
+          return {data: response.body, total: Number(response.headers.get('Pagination-Count'))};
         }),
         catchError(error => this.messagesService.handleHttpError(error))
       );

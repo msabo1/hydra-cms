@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from '../../../core/users/users.service';
-import { MessagesService } from '../../../shared/messages/messages.service';
+import { MessagesService } from '../../../core/messages/messages.service';
 import { UpdateUserDto } from '../../../core/users/dto/update-user.dto';
 import { User } from '../../../core/users/user.model';
 

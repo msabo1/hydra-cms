@@ -10,6 +10,6 @@ import { UsersService } from './users.service';
     CommonModule
   ],
   providers: [UsersService],
-  exports: [UsersService]
+  exports: []
 })
 export class UsersModule { }
