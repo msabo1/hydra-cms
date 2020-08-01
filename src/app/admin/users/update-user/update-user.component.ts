@@ -44,7 +44,7 @@ export class UpdateUserComponent implements OnInit {
     }
     this.usersService.update(this.user.id, updateUserDto).subscribe((user: User) => {
       if(user.id){
-        this.messagesService.message.next('User updated successfully!');
+        this.messagesService.successMessage.next('User updated successfully!');
         this.dialogRef.close(true);
       }
     });

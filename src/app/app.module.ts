@@ -10,7 +10,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS,  } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module'
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AdminModule } from './admin/admin.module';
-import { PrivilegeAuthDirective } from './auth/privilege-auth.directive'
 
 @NgModule({
   declarations: [

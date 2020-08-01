@@ -26,7 +26,7 @@ export class UsersService {
           response.body.forEach(this.mapResponseToUserModel);
           return {users: response.body, total: Number(response.headers.get('Pagination-Count'))};
         }),
-        catchError(error => this.messagesService.handleError(error))
+        catchError(error => this.messagesService.handleHttpError(error))
       );
   }
 
@@ -35,20 +35,20 @@ export class UsersService {
     return this.http.get<User>(`${this.url}/${id}`,{params})
       .pipe(
         map(this.mapResponseToUserModel),
-        catchError(error => this.messagesService.handleError(error))
+        catchError(error => this.messagesService.handleHttpError(error))
       );
   }
 
   create(createUserDto: CreateUserDto): Observable<User>{
-    return this.http.post<User>(this.url, createUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
+    return this.http.post<User>(this.url, createUserDto).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
 
   update(id: string, updateUserDto: UpdateUserDto): Observable<User>{
-    return this.http.patch<User>(`${this.url}/${id}`, updateUserDto).pipe(catchError(error => this.messagesService.handleError(error)));
+    return this.http.patch<User>(`${this.url}/${id}`, updateUserDto).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
 
   delete(id: string){
-    return this.http.delete(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleError(error)));
+    return this.http.delete(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
 
   private mapResponseToUserModel(user: User): User{

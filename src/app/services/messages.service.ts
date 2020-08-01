@@ -5,13 +5,15 @@ import { Observable, Subject, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MessagesService {
-  message: Subject<any> = new Subject<any>();
+  message: Subject<string> = new Subject<string>();
+  successMessage: Subject<string> = new Subject<string>();
+  errorMessage: Subject<string> = new Subject<string>();
   
   constructor() { }
 
-  handleError(error): Observable<any>{
+  handleHttpError(error): Observable<any>{
     console.log(error);
-    this.message.next(error.error.message);
+    this.errorMessage.next(error.error.message);
     return of();
   }
 }

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MessagesService } from '../../services/messages.service';
+import { GeneralMessageComponent } from './general-message/general-message.component';
+import { ComponentType } from '@angular/cdk/portal';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
+
 
 @Component({
   selector: 'app-message',
@@ -15,14 +20,18 @@ export class MessageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.messages.message.subscribe((message) => this.openSnackBar(message));
+    this.messages.message.subscribe((message) => this.openSnackBar(message, GeneralMessageComponent));
+    this.messages.errorMessage.subscribe((message: string) => this.openSnackBar(message, ErrorMessageComponent));
+    this.messages.successMessage.subscribe((message: string) => this.openSnackBar(message, SuccessMessageComponent));
   }
 
-  openSnackBar(message: string){
-    this.snackBar.open(message, null, {
-      duration: 1000,
+  openSnackBar(message: string, component: ComponentType<unknown>){
+    const wordCount: number = message.split(' ').length;
+    this.snackBar.openFromComponent(component, {
+      duration: wordCount*200 + 100,
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'top',
+      data: message
     });
   }
 

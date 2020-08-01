@@ -45,7 +45,7 @@ export class AuthService {
           return tkn;
         }),
         tap((token: Token) => this.handleSuccessfulLogin(token)),
-        catchError(error => this.messagesService.handleError(error))
+        catchError(error => this.messagesService.handleHttpError(error))
       );
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { UsersService } from '../../../services/users.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MessagesService } from '../../../services/messages.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -11,6 +12,7 @@ export class DeleteUserComponent implements OnInit {
 
   constructor(
     private readonly usersService: UsersService,
+    private readonly messagesService: MessagesService,
     private readonly dialogRef: MatDialogRef<DeleteUserComponent>,
     @Inject(MAT_DIALOG_DATA) private id: string
   ) { }
@@ -24,6 +26,7 @@ export class DeleteUserComponent implements OnInit {
 
   onDelete(){
     this.usersService.delete(this.id).subscribe(() => {
+      this.messagesService.successMessage.next('User deleted successfully!');
       this.dialogRef.close(true);
     })
 

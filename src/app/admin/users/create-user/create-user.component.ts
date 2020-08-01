@@ -39,7 +39,7 @@ export class CreateUserComponent implements OnInit {
     }
     this.usersService.create(createUserDto).subscribe((user: User) => {
       if(user.id){
-        this.messagesService.message.next('New user created successfully!');
+        this.messagesService.successMessage.next('New user created successfully!');
         this.dialogRef.close(true);
       }
     });
