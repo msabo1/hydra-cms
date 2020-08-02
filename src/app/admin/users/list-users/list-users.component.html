@@ -2,18 +2,17 @@
   <section fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
     <mat-form-field appearance="fill">
       <mat-label>Status</mat-label>
-      <mat-select [formControl]="status" matNativeControl name="status" value="all" (selectionChange)="statusSubject.next(status.value)">
+      <mat-select [formControl]="status" matNativeControl name="status" (selectionChange)="statusSubject.next(status.value)">
         <mat-option value="all">All</mat-option>
         <mat-option value="active">Active</mat-option>
         <mat-option value="banned">Banned</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *appPrivilege="'read roles'">
       <mat-label>Role</mat-label>
-      <mat-select matNativeControl name="status" value="all">
+      <mat-select [formControl]="role" matNativeControl name="role" (selectionChange)="roleSubject.next(status.value)">
         <mat-option value="all">All</mat-option>
-        <mat-option value="active">Active</mat-option>
-        <mat-option value="banned">Banned</mat-option>
+        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </section>

@@ -11,6 +11,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
 import { QueryResponse } from '../../../core/models/query-response.model';
+import { RolesService } from '../../../core/roles/roles.service';
+import { Role } from '../../../core/roles/role.model';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-list-users',
@@ -26,6 +29,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
   users: User[];
   total: number;
+  roles: Role[];
 
   pageSize: number = 10;
   pageIndex: number = 0;
@@ -34,14 +38,26 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
 
   searchTermSubject: Subject<string> = new Subject<string>();
   statusSubject: Subject<string> = new Subject<string>();
-  status: FormControl = new FormControl();
+  roleSubject: Subject<string> = new Subject<string>();
+  status: FormControl = new FormControl('all');
   search: FormControl = new FormControl();
+  role: FormControl = new FormControl('all');
 
-  constructor(private readonly usersService: UsersService, private readonly dialog: MatDialog) { }
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly dialog: MatDialog,
+    private readonly rolesService: RolesService,
+    private readonly authService: AuthService
+    ) { }
 
   ngOnInit(): void {
-    this.status.setValue('all');
     this.getUsers({pageIndex: this.pageIndex, pageSize: this.pageSize});
+    if(this.authService.hasPrivilege('read', 'roles')){
+      this.rolesService.get().subscribe((rolesResponse: QueryResponse<Role>) => {
+        this.roles = rolesResponse.data;
+      });
+    }
+    
   }
 
   ngAfterViewInit(): void{
@@ -51,6 +67,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
       this.sort.sortChange,
       this.searchTermSubject.pipe(debounceTime(300), distinctUntilChanged()),
       this.statusSubject,
+      this.roleSubject,
       this.reloadSubject
       )
       .subscribe(() => {
@@ -60,7 +77,8 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
           sortBy: this.sort.active,
           order: this.sort.direction,
           search: this.search.value,
-          status: this.status.value == 'all' ? null : this.status.value
+          status: this.status.value == 'all' ? null : this.status.value,
+          roleId: this.role.value == 'all' ? null : this.role.value
           }
         this.getUsers(query);
     });
@@ -77,7 +95,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   }
 
   openEditDialog(user: User){
-    const dialogRef: MatDialogRef<UpdateUserComponent> = this.dialog.open(UpdateUserComponent, {data: user});
+    const dialogRef: MatDialogRef<UpdateUserComponent> = this.dialog.open(UpdateUserComponent, {data: {user, roles: this.roles}});
     dialogRef.afterClosed().subscribe((result) => {
       if(result){
         this.reloadSubject.next(result);

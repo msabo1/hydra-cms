@@ -19,7 +19,7 @@ export class RolesService {
     private readonly messagesService: MessagesService
     ) { }
 
-  get(query: QueryRolesDto): Observable<QueryResponse<Role>>{
+  get(query?: QueryRolesDto): Observable<QueryResponse<Role>>{
     const params: HttpParams = new HttpParams({fromObject: query as {[param: string]: string}});
     return this.http.get<Role[]>(this.url, {params, observe: 'response'})
       .pipe(

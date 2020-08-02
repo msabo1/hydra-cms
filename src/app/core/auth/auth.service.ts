@@ -19,13 +19,15 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly http: HttpClient,
-    private readonly messagesService: MessagesService
+    private readonly messagesService: MessagesService,
   ){
     this.token = new Token();
     this.token.token = localStorage.token;
     if(this.token.isValid()){
       this.payload = this.token.parse();
       this.loadLoggedUser();
+    }else{
+
     }
   }
 
@@ -62,6 +64,10 @@ export class AuthService {
 
   getLoggedUser(): Observable<User>{
     return this.usersService.getById(this.payload.userId, {cascade: 'true'});
+  }
+
+  hasPrivilege(permission: string, group: string): boolean{
+    return this.loggedUser.value.role.hasPrivilege(permission, group);
   }
 
   private loadLoggedUser(){

@@ -17,6 +17,12 @@
       <mat-option value="banned">Banned</mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field *appPrivilege="'read roles'">
+    <mat-label>Role</mat-label>
+    <mat-select formControlName="role" matNativeControl name="role">
+      <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
   
   <div fxLayoutAlign='end' fxLayoutGap="5px">
     <button mat-button color="accent" mat-dialog-close (click)="onClose()">Close</button>
