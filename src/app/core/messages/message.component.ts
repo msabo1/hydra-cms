@@ -26,13 +26,20 @@ export class MessageComponent implements OnInit {
     this.messages.successMessage.subscribe((message: string) => this.openSnackBar(message, SuccessMessageComponent));
   }
 
-  openSnackBar(message: string, component: ComponentType<unknown>){
-    const wordCount: number = message.split(' ').length;
+  openSnackBar(message: string | string[], component: ComponentType<unknown>){
+    let stringMessage: string;
+    if(typeof message == 'object'){
+      stringMessage = message.reduce((acc: string, message: string) => acc + message + '\n');
+    }else{
+      stringMessage = message;
+    }
+
+    const wordCount: number = stringMessage.split(' ').length;
     this.snackBar.openFromComponent(component, {
       duration: wordCount*200 + 100,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      data: message
+      data: stringMessage
     });
   }
 
