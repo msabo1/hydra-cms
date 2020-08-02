@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { User } from './user.model';
 import { catchError, tap, map } from 'rxjs/operators';
 import { MessagesService } from '../messages/messages.service'
-import { Role } from '../roles/models/role.model';
+import { Role } from '../roles/role.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { QueryUsersDto } from './dto/query-users.dto';
-import { QueryResponse } from '../models/query-response.mode'
+import { QueryResponse } from '../models/query-response.model'
 
 @Injectable()
 export class UsersService {

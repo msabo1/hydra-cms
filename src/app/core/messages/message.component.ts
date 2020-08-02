@@ -20,7 +20,6 @@ export class MessageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.messages);
     this.messages.message.subscribe((message) => this.openSnackBar(message, GeneralMessageComponent));
     this.messages.errorMessage.subscribe((message: string) => this.openSnackBar(message, ErrorMessageComponent));
     this.messages.successMessage.subscribe((message: string) => this.openSnackBar(message, SuccessMessageComponent));

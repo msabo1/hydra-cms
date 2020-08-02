@@ -1,1 +1,9 @@
-<p>roles works!</p>
+<section fxLayout="column" fxLayoutGap="10px">
+  <section fxLayout="row" fxLayoutGap="10px">
+    <h1>Roles</h1>
+    <section *appPrivilege="'create roles'">
+      <button mat-stroked-button color="primary" (click)="openCreateDialog()">Create new</button>
+    </section>
+  </section>
+  <app-list-roles *appPrivilege="'read roles'" [reloadSubject]="reloadSubject"></app-list-roles>
+</section>

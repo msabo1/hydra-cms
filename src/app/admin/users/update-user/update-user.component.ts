@@ -25,7 +25,7 @@ export class UpdateUserComponent implements OnInit {
     private readonly dialogRef: MatDialogRef<UpdateUserComponent>,
     @Inject(MAT_DIALOG_DATA) private user: User,
     private readonly usersService: UsersService,
-  private readonly messagesService: MessagesService
+    private readonly messagesService: MessagesService
   ) { }
 
   ngOnInit(): void {

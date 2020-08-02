@@ -1,0 +1,22 @@
+<h2>{{role.name}} role privileges</h2>
+<section fxLayoutAlign="end" *appPrivilege="'update roles'">
+  <mat-slide-toggle (change)="enableEdit = !enableEdit" [checked]="false" color="primary">Edit</mat-slide-toggle>
+</section>
+
+<table matSort mat-table  [dataSource]="groups">
+  <ng-container matColumnDef="group">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let group"> {{group.name}} </td>
+  </ng-container>
+  <ng-container *ngFor="let permission of permissions" [matColumnDef]="permission.name">
+    <th mat-header-cell *matHeaderCellDef> {{permission.name}}</th>
+    <td mat-cell *matCellDef="let group"> <mat-checkbox [formControl]="privileges[permission.name+group.name]" [disabled]="!enableEdit"></mat-checkbox></td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+</table>
+<section fxLayoutAlign="end">
+  <button mat-button color="accent" (click)="onClose()">Close</button>
+  <button mat-stroked-button color="primary" *ngIf="enableEdit" (click)="onSave()">Save</button>
+</section>
+

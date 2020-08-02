@@ -7,7 +7,7 @@ import { User } from '../../core/users/user.model';
 import { MessagesService } from '../messages/messages.service'
 import { Payload } from '../../models/payload.model';
 import { UsersService } from '../../core/users/users.service';
-import { Role } from '../../core//roles/models/role.model';
+import { Role } from '../roles/role.model';
 
 @Injectable({
   providedIn: 'root'

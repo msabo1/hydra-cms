@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
-import { QueryResponse } from '../../../core/models/query-response.mode';
+import { QueryResponse } from '../../../core/models/query-response.model';
 
 @Component({
   selector: 'app-list-users',
@@ -22,10 +22,7 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @Input()
-  reloadSubject: Subject<boolean> = new Subject<boolean>();
-  
-  @Input()
-  loggedUser: User;
+  reloadSubject: Subject<boolean>;
 
   users: User[];
   total: number;
