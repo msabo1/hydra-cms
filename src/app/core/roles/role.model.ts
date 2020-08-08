@@ -8,11 +8,15 @@ export class Role{
     updatedAt?: Date;
 
     constructor(role?: Partial<Role>){
-        this.id = role.id;
-        this.name = role.name;
-        this.privileges = role.privileges;
-        this.createdAt = role.createdAt;
-        this.updatedAt = role.updatedAt;
+        this.privileges = [];
+        if(role){
+            this.id = role.id;
+            this.name = role.name;
+            this.privileges = role.privileges;
+            this.createdAt = role.createdAt;
+            this.updatedAt = role.updatedAt;
+        }
+        
 
     }
     hasPrivilege(permission: string, group: string): boolean{

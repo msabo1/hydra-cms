@@ -5,6 +5,7 @@ import { MessagesModule } from './messages/messages.module';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module'
 import { PrivilegesModule } from './privileges/privileges.module';
+import { PreferencesModule } from './preferences/preferences.module';
 
 
 @NgModule({
@@ -15,14 +16,16 @@ import { PrivilegesModule } from './privileges/privileges.module';
     MessagesModule,
     RolesModule,
     UsersModule,
-    PrivilegesModule
+    PrivilegesModule,
+    PreferencesModule
   ],
   exports: [
     AuthModule,
     MessagesModule,
     RolesModule,
     UsersModule,
-    PrivilegesModule
+    PrivilegesModule,
+    PreferencesModule
   ]
 })
 export class CoreModule { }
