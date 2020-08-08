@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Preferences } from './preferences.model';
 import { Role } from '../roles/role.model';
 import { map } from 'rxjs/operators';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class PreferencesService {
       preferences.visitorRole = new Role(preferences.visitorRole);
       return preferences;
     }));
+  }
+
+  update(updatePreferencesDto: UpdatePreferencesDto): Observable<Preferences>{
+    return this.http.patch<Preferences>(this.url, updatePreferencesDto);
   }
 }
