@@ -20,7 +20,7 @@ export class UsersService {
     private readonly messagesService: MessagesService
     ) { }
 
-  get(query: QueryUsersDto): Observable<QueryResponse<User>>{
+  get(query?: QueryUsersDto): Observable<QueryResponse<User>>{
     const params: HttpParams = new HttpParams({fromObject: query as {[param: string]: string}});
     return this.http.get<User[]>(this.url, {params, observe: 'response'})
       .pipe(
