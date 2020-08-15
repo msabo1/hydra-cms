@@ -12,7 +12,7 @@
     <mat-form-field  fxLayoutAlign="center center" appearance="legacy" *appPrivilege="'read users'">
       <input #searchUsers type="text"placeholder="Author" matInput [matAutocomplete]="auto" (input)="searchUsersTerm.next(searchUsers.value)"> 
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let user of users" [value]="user.username" (click)="authorSubject.next(user.id)">
+        <mat-option *ngFor="let user of users" [value]="user.username" (onSelectionChange)="authorSubject.next(user.id)">
           {{user.username}}
         </mat-option>
       </mat-autocomplete>
