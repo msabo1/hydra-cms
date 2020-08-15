@@ -1,0 +1,22 @@
+<section fxLayout="column">
+  <h1>Preferences</h1>
+  <section *appPrivilege="'update preferences'">
+    <mat-slide-toggle (change)="enableEdit = !enableEdit" [checked]="enableEdit" color="primary">Edit</mat-slide-toggle>
+  </section>
+</section>
+
+<section fxLayout="column" fxLayoutAlign="start start">
+  <mat-form-field appearance="fill" *appPrivilege="'read roles'">
+    <mat-label>Default role</mat-label>
+    <mat-select [formControl]="defaultRole" matNativeControl name="defaultRole" [disabled]="!enableEdit">
+      <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *appPrivilege="'read roles'">
+    <mat-label>Visitor role</mat-label>
+    <mat-select [formControl]="visitorRole" matNativeControl name="visitorRole" [disabled]="!enableEdit">
+      <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" *ngIf="enableEdit" (click)="onSave()">Save</button>
+</section>

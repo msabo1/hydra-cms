@@ -18,7 +18,7 @@ export class PreferencesService {
     private readonly http: HttpClient,
     @Inject('directHttp') private readonly directHttp: HttpClient
   ){
-    this.get().subscribe((preferences: Preferences) => this.preferences.next(preferences));
+    this.loadNewPreferences();
   }
 
   get(): Observable<Preferences>{
@@ -31,5 +31,9 @@ export class PreferencesService {
 
   update(updatePreferencesDto: UpdatePreferencesDto): Observable<Preferences>{
     return this.http.patch<Preferences>(this.url, updatePreferencesDto);
+  }
+
+  loadNewPreferences(){
+    this.get().subscribe((preferences: Preferences) => this.preferences.next(preferences));
   }
 }
