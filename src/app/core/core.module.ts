@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module'
 import { PrivilegesModule } from './privileges/privileges.module';
 import { PreferencesModule } from './preferences/preferences.module';
+import { PagesModule, } from './pages/pages.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PreferencesModule } from './preferences/preferences.module';
     RolesModule,
     UsersModule,
     PrivilegesModule,
-    PreferencesModule
+    PreferencesModule,
+    PagesModule
   ],
   exports: [
     AuthModule,
@@ -25,7 +27,8 @@ import { PreferencesModule } from './preferences/preferences.module';
     RolesModule,
     UsersModule,
     PrivilegesModule,
-    PreferencesModule
+    PreferencesModule,
+    PagesModule
   ]
 })
 export class CoreModule { }
