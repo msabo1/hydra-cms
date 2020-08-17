@@ -1,0 +1,16 @@
+<section fxLayout="row" fxLayoutGap="10px">
+  <section fxFlex="1 1 0px" fxLayout="column">
+    <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold">Bold</mat-button-toggle>
+      <mat-button-toggle value="italic">Italic</mat-button-toggle>
+      <mat-button-toggle value="underline">Underline</mat-button-toggle>
+    </mat-button-toggle-group>     -->
+    <mat-form-field>
+      <textarea #markdownContent matInput rows="20" placeholder="Content" [formControl]="markdownText"></textarea>
+      <mat-error>Content is required</mat-error>
+    </mat-form-field>
+  </section>
+  <mat-divider [vertical]="true"></mat-divider>
+  <section [innerHTML]="markdownContent.value | marked" fxFlex="1 1 0px" class="preview">
+  </section>
+</section>
