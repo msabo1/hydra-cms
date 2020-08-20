@@ -1,17 +1,16 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { PagesService } from '../../../core/pages/pages.service';
-import { MessagesService } from '../../../core/messages/messages.service';
 import { GetPagesParam, QueryPagesDto } from '../../../core/pages/dto/query-pages.dto';
 import { QueryResponse } from '../../../core/models/query-response.model';
 import { Page } from '../../../core/pages/page.model';
-import { Subject, merge, BehaviorSubject, Subject } from 'rxjs';
+import { Subject, merge, BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { User } from '../../../core/users/user.model';
 import { UsersService } from '../../../core/users/users.service';
-import { MatDialogRef, MatDialog, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { DeletePageComponent } from '../delete-page/delete-page.component';
 
 @Component({
