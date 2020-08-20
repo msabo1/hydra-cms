@@ -4,13 +4,15 @@ import { MessagesService } from '../../../core/messages/messages.service';
 import { GetPagesParam, QueryPagesDto } from '../../../core/pages/dto/query-pages.dto';
 import { QueryResponse } from '../../../core/models/query-response.model';
 import { Page } from '../../../core/pages/page.model';
-import { Subject, merge, BehaviorSubject } from 'rxjs';
+import { Subject, merge, BehaviorSubject, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { User } from '../../../core/users/user.model';
 import { UsersService } from '../../../core/users/users.service';
+import { MatDialogRef, MatDialog, MatDialog } from '@angular/material/dialog';
+import { DeletePageComponent } from '../delete-page/delete-page.component';
 
 @Component({
   selector: 'app-list-pages',
@@ -37,13 +39,15 @@ export class ListPagesComponent implements OnInit, AfterViewInit {
   status: FormControl = new FormControl('all');
   search: FormControl = new FormControl();
 
+  reloadSubject: Subject<boolean> = new Subject<boolean>();
+
   tableColumns: string[] = ['title', 'status', 'author', 'createdAt', 'updatedAt', 'actions'];
 
 
   constructor(
     private readonly pagesService: PagesService,
-    private readonly messagesService: MessagesService,
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
+    private readonly dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +61,8 @@ export class ListPagesComponent implements OnInit, AfterViewInit {
       this.sort.sortChange,
       this.searchTermSubject.pipe(debounceTime(300), distinctUntilChanged()),
       this.statusSubject,
-      this.authorSubject
+      this.authorSubject,
+      this.reloadSubject
       )
       .subscribe(() => {
         const query: GetPagesParam = {
@@ -88,6 +93,15 @@ export class ListPagesComponent implements OnInit, AfterViewInit {
     this.pagesService.get(_query).subscribe((pagesResponse: QueryResponse<Page>) => {
       this.pages = pagesResponse.data;
       this.total = pagesResponse.total;
+    });
+  }
+
+  openDeleteDialog(id: string){
+    const dialogRef: MatDialogRef<DeletePageComponent> = this.dialog.open(DeletePageComponent, {data: id});
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result){
+        this.reloadSubject.next(result);
+      }
     });
   }
 
