@@ -1,0 +1,9 @@
+<section fxLayout="column" fxLayoutGap="10px">
+  <section fxLayout="row" fxLayoutGap="10px">
+    <h1>Posts</h1>
+    <section *appPrivilege="'create posts'">
+      <a mat-stroked-button color="primary" routerLink="new">Create new</a>
+    </section>
+  </section>
+  <app-list-posts *appPrivilege="'read posts'"></app-list-posts>
+</section>

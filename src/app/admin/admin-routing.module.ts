@@ -7,6 +7,9 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { PagesComponent } from './pages/pages.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { UpdatePageComponent } from './pages/update-page/update-page.component';
+import { PostsComponent } from './posts/posts.component';
+import { CreatePostComponent } from './posts/create-post/create-post.component';
+import { UpdatePostComponent } from './posts/update-post/update-post.component';
 
 const routes: Routes = [
   {path:'', component:AdminHomeComponent},
@@ -15,7 +18,10 @@ const routes: Routes = [
   {path: 'preferences', component: PreferencesComponent},
   {path: 'pages/update/:id', component: UpdatePageComponent},
   {path: 'pages/new', component: CreatePageComponent},
-  {path: 'pages', component: PagesComponent}
+  {path: 'pages', component: PagesComponent},
+  {path: 'posts', component: PostsComponent},
+  {path: 'posts/new', component: CreatePostComponent},
+  {path: 'posts/update/:id', component: UpdatePostComponent}
 ];
 
 @NgModule({
