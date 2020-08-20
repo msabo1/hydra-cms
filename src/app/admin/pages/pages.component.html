@@ -1,2 +1,10 @@
-<h1>Pages</h1>
-<app-list-pages *appPrivilege="'read pages'"></app-list-pages>
+<section fxLayout="column" fxLayoutGap="10px">
+  <section fxLayout="row" fxLayoutGap="10px">
+    <h1>Pages</h1>
+    <section *appPrivilege="'create pages'">
+      <a mat-stroked-button color="primary" routerLink="new">Create new</a>
+    </section>
+  </section>
+  <app-list-pages *appPrivilege="'read pages'"></app-list-pages>
+<!-- <router-outlet></router-outlet> -->
+</section>

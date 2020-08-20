@@ -7,6 +7,7 @@ import { RolesModule } from './roles/roles.module'
 import { PrivilegesModule } from './privileges/privileges.module';
 import { PreferencesModule } from './preferences/preferences.module';
 import { PagesModule, } from './pages/pages.module';
+import { MdEditorModule } from './md-editor/md-editor.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PagesModule, } from './pages/pages.module';
     UsersModule,
     PrivilegesModule,
     PreferencesModule,
-    PagesModule
+    PagesModule,
+    MdEditorModule
   ],
   exports: [
     AuthModule,
@@ -28,7 +30,8 @@ import { PagesModule, } from './pages/pages.module';
     UsersModule,
     PrivilegesModule,
     PreferencesModule,
-    PagesModule
+    PagesModule,
+    MdEditorModule
   ]
 })
 export class CoreModule { }

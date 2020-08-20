@@ -12,7 +12,7 @@ import { MessagesModule } from './core/messages/messages.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
     
   ],
   imports: [
