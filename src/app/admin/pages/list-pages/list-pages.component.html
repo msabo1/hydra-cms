@@ -51,7 +51,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let page"> 
         <div fxLayout="row" fxLayoutGap="5px">
-          <button mat-icon-button color="primary" matTooltip="Edit" matTooltipPosition="above" (click)="openEditDialog(page)" *appPrivilege="'update pages'"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="primary" matTooltip="Edit" matTooltipPosition="above" routerLink="update/{{page.id}}" *appPrivilege="'update pages'"><mat-icon>edit</mat-icon></button>
           <button mat-icon-button color="warn" matTooltip="Delete" matTooltipPosition="above" (click)="openDeleteDialog(page.id)" *appPrivilege="'delete pages'"><mat-icon>delete</mat-icon></button>  
         </div>
         

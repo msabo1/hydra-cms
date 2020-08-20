@@ -22,9 +22,10 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { PagesComponent } from './pages/pages.component';
 import { ListPagesComponent } from './pages/list-pages/list-pages.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
+import { UpdatePageComponent } from './pages/update-page/update-page.component';
 
 @NgModule({
-  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent, UpdateUserComponent, DeleteUserComponent, RolesComponent, ListRolesComponent, DeleteRoleComponent, UpdateRoleComponent, PrivilegesComponent, CreateRoleComponent, PreferencesComponent, PagesComponent, ListPagesComponent, CreatePageComponent],
+  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent, UpdateUserComponent, DeleteUserComponent, RolesComponent, ListRolesComponent, DeleteRoleComponent, UpdateRoleComponent, PrivilegesComponent, CreateRoleComponent, PreferencesComponent, PagesComponent, ListPagesComponent, CreatePageComponent, UpdatePageComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

@@ -1,0 +1,22 @@
+<section *appPrivilege="'update pages'">
+  <h1>
+    Update page
+  </h1>
+  <form [formGroup]='updatePageForm'>
+    <section fxLayout="row" fxLayoutGap="10px">
+      <mat-form-field fxFlex="1 1 0px">
+        <input type="text" matInput placeholder="Title" formControlName="title">
+        <mat-error>Title is required!</mat-error>
+      </mat-form-field>
+     <section fxFlex="1 1 0px"></section>
+    </section>
+    <app-md-editor #editor></app-md-editor> 
+   <section fxLayout="row" fxLayoutGap="10px">
+     <section fxFlex="1 1 0px" fxLayoutAlign="end" fxLayoutGap="10px">
+      <button mat-stroked-button color="accent" [disabled]="!(editor.markdownText.valid && updatePageForm.valid)" (click)="updatePage('drafted')">Save as draft</button>
+      <button mat-raised-button color="primary" [disabled]="!(editor.markdownText.valid && updatePageForm.valid)" (click)="updatePage('published')">Publish</button>
+     </section>
+    <section fxFlex="1 1 0px"></section>
+   </section>
+  </form>
+</section>

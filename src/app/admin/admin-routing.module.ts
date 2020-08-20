@@ -6,15 +6,16 @@ import { RolesComponent } from './roles/roles.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { PagesComponent } from './pages/pages.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
-import { ListPagesComponent } from './pages/list-pages/list-pages.component';
+import { UpdatePageComponent } from './pages/update-page/update-page.component';
 
 const routes: Routes = [
   {path:'', component:AdminHomeComponent},
   {path: 'users', component: UsersComponent},
   {path:'roles', component:RolesComponent},
   {path: 'preferences', component: PreferencesComponent},
-  {path: 'pages', component: PagesComponent},
-  {path: 'pages/new', component: CreatePageComponent}
+  {path: 'pages/update/:id', component: UpdatePageComponent},
+  {path: 'pages/new', component: CreatePageComponent},
+  {path: 'pages', component: PagesComponent}
 ];
 
 @NgModule({

@@ -28,7 +28,7 @@ export class PagesService {
       );
   }
 
-  getById(id: string, getPageDto: GetPageDto): Observable<Page>{
+  getById(id: string, getPageDto?: GetPageDto): Observable<Page>{
     const params: HttpParams = new HttpParams({fromObject: getPageDto as {[param: string]: string}});
     return this.http.get<Page>(`${this.url}/${id}`, {params}).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
