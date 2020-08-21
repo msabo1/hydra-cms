@@ -43,7 +43,7 @@ export class PostsService {
     return this.http.patch<Post>(`${this.url}/${id}`, updatePostDto).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
 
-  delete(id: string){
-    this.http.delete(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleHttpError(error)));
+  delete(id: string): Observable<void>{
+    return this.http.delete(`${this.url}/${id}`).pipe(catchError(error => this.messagesService.handleHttpError(error)));
   }
 }

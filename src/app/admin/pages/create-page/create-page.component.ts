@@ -16,7 +16,7 @@ export class CreatePageComponent implements OnInit{
   @ViewChild(MdEditorComponent) editor: MdEditorComponent;
 
   createPageForm: FormGroup = new FormGroup({
-    title: new FormControl(null, [Validators.required]),
+    title: new FormControl(null, [Validators.required])
   });
 
   constructor(

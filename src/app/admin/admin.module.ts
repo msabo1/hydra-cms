@@ -38,7 +38,7 @@ import { ListPostsComponent } from './posts/list-posts/list-posts.component';
     ReactiveFormsModule,
     AdminRoutingModule,
     CoreModule,
-    MaterialModule,
+    MaterialModule
   ],
   exports: [AdminComponent]
 })

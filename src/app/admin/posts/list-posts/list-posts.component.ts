@@ -41,7 +41,7 @@ export class ListPostsComponent implements OnInit {
 
   reloadSubject: Subject<boolean> = new Subject<boolean>();
 
-  tableColumns: string[] = ['title', 'status', 'author', 'createdAt', 'updatedAt', 'actions'];
+  tableColumns: string[] = ['title', 'status', 'publishOn', 'author', 'createdAt', 'updatedAt', 'actions'];
 
 
   constructor(
@@ -103,5 +103,9 @@ export class ListPostsComponent implements OnInit {
         this.reloadSubject.next(result);
       }
     });
+  }
+
+  isPublished(date: string): boolean{
+    return (new Date(date)) < new Date();
   }
 }
