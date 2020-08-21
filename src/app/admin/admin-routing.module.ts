@@ -10,6 +10,9 @@ import { UpdatePageComponent } from './pages/update-page/update-page.component';
 import { PostsComponent } from './posts/posts.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UpdatePostComponent } from './posts/update-post/update-post.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CreateCategoryComponent } from './categories/create-category/create-category.component';
+import { UpdateCategoryComponent } from './categories/update-category/update-category.component';
 
 const routes: Routes = [
   {path:'', component:AdminHomeComponent},
@@ -21,7 +24,10 @@ const routes: Routes = [
   {path: 'pages', component: PagesComponent},
   {path: 'posts', component: PostsComponent},
   {path: 'posts/new', component: CreatePostComponent},
-  {path: 'posts/update/:id', component: UpdatePostComponent}
+  {path: 'posts/update/:id', component: UpdatePostComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'categories/new', component: CreateCategoryComponent},
+  {path: 'categories/update/:id', component: UpdateCategoryComponent}
 ];
 
 @NgModule({

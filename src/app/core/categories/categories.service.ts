@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { QueryCategoriesDto } from './dto/query-categories.dto';
 import { Category } from './category.model';
 import { Observable } from 'rxjs';
-import { catchError, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { GetCategoryDto } from './dto/get-category.dto';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';

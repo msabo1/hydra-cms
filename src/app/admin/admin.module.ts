@@ -29,9 +29,14 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UpdatePostComponent } from './posts/update-post/update-post.component';
 import { DeletePostComponent } from './posts/delete-post/delete-post.component';
 import { ListPostsComponent } from './posts/list-posts/list-posts.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { ListCategoriesComponent } from './categories/list-categories/list-categories.component';
+import { CreateCategoryComponent } from './categories/create-category/create-category.component';
+import { UpdateCategoryComponent } from './categories/update-category/update-category.component';
+import { DeleteCategoryComponent } from './categories/delete-category/delete-category.component';
 
 @NgModule({
-  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent, UpdateUserComponent, DeleteUserComponent, RolesComponent, ListRolesComponent, DeleteRoleComponent, UpdateRoleComponent, PrivilegesComponent, CreateRoleComponent, PreferencesComponent, PagesComponent, ListPagesComponent, CreatePageComponent, UpdatePageComponent, DeletePageComponent, PostsComponent, CreatePostComponent, UpdatePostComponent, DeletePostComponent, ListPostsComponent],
+  declarations: [UsersComponent, ListUsersComponent, AdminComponent, AdminHomeComponent, CreateUserComponent, UpdateUserComponent, DeleteUserComponent, RolesComponent, ListRolesComponent, DeleteRoleComponent, UpdateRoleComponent, PrivilegesComponent, CreateRoleComponent, PreferencesComponent, PagesComponent, ListPagesComponent, CreatePageComponent, UpdatePageComponent, DeletePageComponent, PostsComponent, CreatePostComponent, UpdatePostComponent, DeletePostComponent, ListPostsComponent, CategoriesComponent, ListCategoriesComponent, CreateCategoryComponent, UpdateCategoryComponent, DeleteCategoryComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
